@@ -1,0 +1,42 @@
+adc exp2 bench (clang 21.0.0, fast-math off, release)
+
+Timing, 2^x, f32: ns per sample, speedup vs std::exp2; x uniform in [-10, 10]
+  indep / vector: 65536 sorted inputs, escape every sample or once per pass, median of 100 passes.
+  cold: 256-sample ramp through that range after evicting 64 MB, trimmed mean of 200
+  method                                 indep             vector               cold        
+  std::exp2                               1.49    1.0x       1.47    1.0x       1.93    1.0x
+  bits_exp2_tuned                         0.39    3.8x       0.09   16.1x       0.09   22.0x
+  floor_exp2_5                            0.75    2.0x       0.21    7.0x       0.23    8.5x
+  floor_exp2_6                            0.83    1.8x       0.23    6.4x       0.23    8.5x
+  round_exp2_5                            0.76    2.0x       0.21    7.0x       0.21    9.3x
+  round_exp2_6                            0.81    1.8x       0.23    6.4x       0.24    7.9x
+  round_unit_exp2_5                       0.76    1.9x       0.21    7.1x       0.20    9.5x
+  table_exp2_3_16                         0.78    1.9x       0.78    1.9x       0.99    1.9x
+  round_exp2_6_full                       1.34    1.1x       0.42    3.5x       0.42    4.6x
+
+Timing, 2^x, f64: ns per sample, speedup vs std::exp2; x uniform in [-10, 10]
+  indep / vector: 65536 sorted inputs, escape every sample or once per pass, median of 100 passes.
+  cold: 256-sample ramp through that range after evicting 64 MB, trimmed mean of 200
+  method                                 indep             vector               cold        
+  std::exp2                               2.13    1.0x       2.08    1.0x       2.27    1.0x
+  bits_exp2_tuned                         1.71    1.2x       0.25    8.3x       0.26    8.9x
+  floor_exp2_5                            0.73    2.9x       0.42    5.0x       0.43    5.3x
+  floor_exp2_6                            0.81    2.6x       0.45    4.7x       0.47    4.8x
+  round_exp2_5                            1.71    1.2x       0.42    5.0x       0.44    5.2x
+  round_exp2_6                            0.82    2.6x       0.44    4.7x       0.47    4.9x
+  round_unit_exp2_5                       0.74    2.9x       0.40    5.2x       0.42    5.4x
+  table_exp2_3_16                         1.71    1.2x       0.78    2.7x       1.01    2.2x
+  round_exp2_6_full                       1.71    1.2x       0.83    2.5x       0.84    2.7x
+
+Error, 2^x, f32: every float, normal x in [-125, 126]
+  method                          max ULP           at x    max rel    max abs           at x       cents         dB
+  bits_exp2_tuned                3.66e+05      16.999998     0.0298          —                       50.9      0.255
+  floor_exp2_5                       2.11 -0.00055173045   1.79e-07          —                    0.00031   1.55e-06
+  floor_exp2_6                       1.34  -0.0095200837   8.11e-08          —                    0.00014   7.04e-07
+  round_exp2_5                       3.00 -8.5991324e-08   2.31e-07          —                     0.0004   2.01e-06
+  round_exp2_6                       0.98      0.5008561   8.29e-08          —                   0.000144    7.2e-07
+  round_unit_exp2_5                  3.20    -0.49991682    2.7e-07          —                   0.000467   2.34e-06
+  table_exp2_3_16                    1.00     0.21868576   1.09e-07          —                   0.000188   9.43e-07
+  round_exp2_6_full                  0.98      0.5008561   8.29e-08          —                   0.000144    7.2e-07
+  std::exp2                          0.51  -0.0019473392   6.04e-08          —                   0.000104   5.24e-07
+  (17.0 s on 12 threads)

@@ -1,0 +1,16 @@
+adc sin approximation bench (clang 21.0.0, fast-math off, release)
+
+ULP error, f32, phase: every 32-bit phase (compare by max abs dB)
+  method                          max ULP             at x   mean ULP   exact %  <1 ULP % max abs dB
+  cheb_turns_phase_sin_13       1.668e+07      0.500000019      8.381    26.278    48.890     -130.2
+  cheb_phase_sin_13                 5.695    0.00491501554     0.8288    36.884    66.409     -131.3
+  lut_phase_nearest_256         1.678e+07      0.501243411  3.053e+05     0.016     0.023      -38.2
+  lut_phase_nearest_1024        1.678e+07       0.50031085  9.269e+04     0.019     0.029      -50.3
+  lut_phase_nearest_4096        1.678e+07      0.500019428  2.728e+04     0.034     0.059      -62.3
+  lut_phase_nearest_65536       1.678e+07      0.500001214       2217     0.342     0.633      -86.4
+  lut_phase_linear_256               1684   1.94276217e-05      677.5     0.026     0.051      -82.5
+  lut_phase_linear_1024             105.7   4.85614873e-06      42.25     0.407     0.819     -106.5
+  lut_phase_linear_4096             7.639   9.69343819e-06      2.684     6.503    13.801     -129.1
+  lut_phase_linear_65536            1.126     0.0402151374     0.3052    80.204   100.000     -144.4
+  std::sin(2pi phase/2^32)      1.588e+09                1         17    36.451    54.944     -124.4
+  (29.9 s on 12 threads)

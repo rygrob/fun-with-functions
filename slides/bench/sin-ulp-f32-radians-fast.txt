@@ -1,0 +1,14 @@
+adc sin approximation bench (clang 21.0.0, fast-math ON, release)
+
+ULP error, f32, radians: every normal float with FLT_MIN <= |x| <= f32(pi)
+  method                          max ULP             at x   mean ULP   exact %  <1 ULP % max abs dB
+  taylor_sin_13                 2.964e+09       3.14159274      17.26    99.252    99.544      -93.4
+  pade_sin_7_6                  1.575e+09       3.14159274      9.152    95.495    98.469      -98.9
+  lut_sin_nearest_1024          1.678e+07   2.98023224e-08  1.167e+07     0.000     0.001      -50.3
+  lut_sin_linear_1024           1.784e+07      -3.14159274  1.024e+07     0.034     0.068     -106.4
+  cheb_sin_13                   1.573e+07        3.1415925     0.1803    99.139    99.556     -125.7
+  cheb_factored_sin_13           1.23e+07       3.14159274     0.7349    40.460    43.684     -131.0
+  cheb_split_sin_11              1.23e+07       3.14159274      2.213     0.470     2.941     -126.1
+  cheb_split_sin_13              1.23e+07       3.14159274     0.7349    40.460    43.684     -131.0
+  std::sin(x)                      0.5628      0.252220333    0.02806    99.914   100.000     -149.8
+  (12.2 s on 12 threads)

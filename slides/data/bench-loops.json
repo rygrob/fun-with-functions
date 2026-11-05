@@ -1,0 +1,1 @@
+{"machine":"MacBook Pro (M2 Pro), on power","compiler":"Apple clang 21, -O3, no fast-math","estrin_feedback":"31%","rows":[{"key":"buffer","label":"Buffer","sorted":10.3,"random":36.4},{"key":"sample","label":"Sample","sorted":2.99,"random":9.5},{"key":"feedback","label":"Feedback","sorted":1.0,"random":1.47}]}

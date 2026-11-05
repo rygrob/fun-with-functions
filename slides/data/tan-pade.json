@@ -1,0 +1,1 @@
+{"tex":"\\tan t \\approx \\frac{t\\,(15 - t^{2})}{15 - 6\\,t^{2}}","tex_3_2":"[3/2]: \\; 0.503292121 \\quad (\\text{Nyquist} + 158\\,\\text{Hz})","tex_5_4":"[5/4]: \\; 0.5000036785 \\quad (\\text{Nyquist} + 0.177\\,\\text{Hz})","tex_7_6":"[7/6]: \\; 0.5000000009 \\quad (\\text{Nyquist} + 4.1 \\times 10^{-5}\\,\\text{Hz})"}

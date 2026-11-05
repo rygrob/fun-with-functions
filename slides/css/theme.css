@@ -1,0 +1,561 @@
+/* Light, quiet theme. Colours match examples/common/plots.py (SERIES order). */
+
+:root {
+  --ink: #0b0b0b;
+  --muted: #8a8985;
+  --faint: #d9d8d4;
+  --paper: #ffffff;
+  --blue: #2a78d6;
+  --orange: #eb6834;
+  --green: #1baf7a;
+  --yellow: #eda100;
+  --pink: #e87ba4;
+  --font: "Inter Variable", "Inter", -apple-system, "Helvetica Neue", sans-serif;
+}
+
+html, body, .reveal-viewport { background: var(--paper); }
+
+.reveal {
+  font-family: var(--font);
+  font-size: 30px;
+  font-weight: 400;
+  color: var(--ink);
+}
+
+.reveal .slides { text-align: left; }
+.reveal .slides section { padding: 8px 64px; box-sizing: border-box; }
+
+.reveal h2 {
+  font-family: var(--font);
+  font-size: 56px;
+  font-weight: 650;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  margin: 32px 0 30px;
+  color: var(--ink);
+}
+
+.reveal p { margin: 0 0 14px; line-height: 1.4; }
+.reveal .sub { color: var(--muted); font-size: 26px; margin-bottom: 18px; }
+.reveal h2 + .sub { margin-top: -20px; }
+.reveal .muted { color: var(--muted); }
+.reveal .nowrap { white-space: nowrap; }
+.reveal .c-blue:not(.hl) { color: var(--blue); }
+.reveal .c-orange:not(.hl) { color: var(--orange); }
+.reveal .c-green:not(.hl) { color: var(--green); }
+
+/* Inline code: function names as you'd call them. */
+.reveal code {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.9em;
+  color: var(--ink);
+  background: #f2f1ee;
+  border-radius: 5px;
+  padding: 0.05em 0.3em;
+}
+
+/* Bullets: three steps of size, weight and ink. Top level is the point,
+   nested is detail: smaller, lighter, an open circle instead of a disc. */
+.reveal ul { display: block; margin: 0 0 0 1.15em; padding: 0; }
+.reveal ul li { font-size: 35px; font-weight: 500; line-height: 1.25; margin: 0 0 18px; }
+.reveal ul ul { margin: 6px 0 0 1.1em; list-style-type: circle; }
+.reveal ul ul li { font-size: 27px; font-weight: 400; color: var(--muted); margin: 0 0 6px; }
+.reveal ul ul ul { margin: 8px 0 4px 1.1em; list-style-type: square; }
+.reveal ul ul ul li { font-size: 24px; margin: 0; }
+
+/* Two columns: text on the left, a picture or figure on the right. */
+.reveal .split { display: flex; gap: 32px; align-items: flex-start; }
+.reveal .split > ul { flex: 1; min-width: 0; margin-top: 0; }
+.reveal .split > .tex.display { flex: none; margin: 0; }
+.reveal .split.nodes-def { gap: 64px; }  /* Chebyshev nodes: the definition beside the rows */
+.reveal .split.nodes-def > .tex.display { margin-top: 24px; }
+.reveal .split.nodes-def > .figure { margin-left: auto; }  /* plot to the trailing edge */
+.reveal .split > .series-plot { flex: none; }  /* Chebyshev series: the spectrum top right */
+.reveal .series-sum { display: inline-block; margin-top: 18px; }
+.reveal .photo { width: 300px; height: 300px; object-fit: cover; border-radius: 12px; margin: 0; flex: none; }
+
+/* Figures with a small title over each, side by side (Chebyshev series). */
+.reveal .plot-title { font-size: 24px; color: var(--muted); margin: 0 0 4px 64px; }
+.reveal .spectra { display: flex; gap: 24px; margin-top: 8px; }
+.reveal .spectra > div:last-child .legend { visibility: hidden; }  /* one legend for both */
+
+/* Side-by-side lists, for slides with more than one column of bullets. */
+.reveal .cols { display: flex; gap: 48px; }
+.reveal .cols > ul { flex: 1; min-width: 0; }
+.reveal .cols.wide-left > ul:first-child { flex: none; }  /* as wide as its longest line */
+
+/* A boxed aside beside the main content, usually revealed by a fragment.
+   It holds its space while hidden, so nothing moves when it appears. */
+.reveal .with-sidebar { display: flex; gap: 28px; align-items: flex-start; }
+.reveal .with-sidebar > :first-child { flex: 1; min-width: 0; }
+.reveal .sidebar {
+  flex: none; width: 330px; box-sizing: border-box;
+  padding: 16px 24px 4px; border-radius: 12px; background: #f6f5f2;
+  font-size: 24px; color: var(--ink);
+}
+.reveal .sidebar.wide { width: 440px; margin-right: -40px; }
+.reveal .sidebar p { margin: 0 0 6px; color: var(--muted); }
+.reveal .sidebar .sidebar-title { font-size: 28px; font-weight: 650; color: var(--ink); margin-bottom: 12px; }
+.reveal .sidebar .tex.display { margin: 0 0 12px; }
+.reveal .sidebar .katex-display { margin: 0.4em 0; }
+
+/* Section divider: one big line, centred on the slide. */
+.reveal .slides section.divider { height: 720px; }
+.reveal .divider h1 {
+  position: absolute; left: 64px; right: 64px; top: 50%;
+  transform: translateY(-50%);
+  margin: 0; text-align: center;
+  font-family: var(--font);
+  font-size: 80px;
+  font-weight: 650;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--ink);
+}
+/* A grey line under a divider's h1 (Thank you / Questions?). */
+.reveal .divider .sub {
+  position: absolute; left: 64px; right: 64px; top: calc(50% + 70px);
+  margin: 0; text-align: center; font-size: 40px;
+}
+
+/* Equations beside a morph figure: the newest one in the moving curve's
+   colour, the ones it replaced fading to grey. */
+.reveal .morph-side { display: flex; gap: 32px; align-items: flex-start; }
+.reveal .morph-side > .figure, .reveal .morph-side > .swap { flex: none; }
+.reveal .steps { flex: 1; min-width: 0; padding-top: 8px; }
+.reveal .steps .tex.display { margin: 0 0 22px; transition: color 0.4s, opacity 0.4s; }
+.reveal .steps .katex-display { margin: 0; text-align: left; }
+.reveal .steps .katex-display > .katex { text-align: left; }
+.reveal .steps .tex.display.lead { margin-bottom: 52px; }
+.reveal .steps.compact .tex.display .katex { font-size: 0.88em; }  /* long sums of terms */
+.reveal .steps .fragment.visible { color: var(--muted); }
+.reveal .steps .fragment.current-fragment { color: var(--blue); }
+/* A step whose own lines are still stepping (a .swap) stays current. */
+.reveal .steps .fragment.visible:has(.current-fragment) { color: var(--blue); }
+
+/* Code blocks: generated C++, light, highlighted by reveal's plugin. */
+.reveal pre {
+  margin: 0; width: fit-content; max-width: 100%; box-shadow: none;
+  font-size: 17.5px; line-height: 1.45; flex: none;
+}
+.reveal pre code {
+  display: block; padding: 18px 22px; max-height: none;
+  background: #f6f5f2; border-radius: 12px; font-size: 1em;
+}
+.reveal .hljs { color: var(--ink); background: #f6f5f2; }
+.reveal pre.wide { margin-top: 8px; }
+/* Steps stacked in one place: current-visible fragments crossfade in turn. */
+.reveal .swap { display: grid; }
+.reveal .swap > * { grid-area: 1 / 1; }
+.reveal .swap.flip { position: relative; }
+.reveal .flip-layer { position: absolute; inset: 0; pointer-events: none; }
+.reveal .flip-piece { position: absolute; white-space: nowrap; }
+.reveal pre.horner-code { font-size: 24px; display: inline-block; margin-top: 6px; }
+.reveal pre.big-code { font-size: 23px; margin: 12px 0 22px; }  /* the code is the slide */
+/* A term singled out in an equation (about to be factored, say): orange. */
+.reveal .term { color: var(--orange); }
+.reveal .hljs-keyword, .reveal .hljs-type, .reveal .hljs-built_in { color: #8a3ab9; }
+.reveal .hljs-title, .reveal .hljs-title.function_ { color: var(--blue); }
+.reveal .hljs-number { color: #b5530f; }
+.reveal .hljs-comment { color: var(--muted); font-style: italic; }
+.reveal .hljs-meta { color: var(--muted); }
+
+/* Padé derivation: the bullets beside a box with the top of the system. */
+.reveal .system-row { display: flex; gap: 16px; align-items: flex-start; }
+.reveal .system-row > ul { flex: 1; min-width: 0; }
+.reveal .system-box.tex.display {
+  flex: none; margin: -10px 0 0; padding: 2px 16px; border-radius: 12px;
+  background: #f6f5f2; font-size: 22.5px;
+}
+
+/* Worked derivation steps, left-aligned and spaced (Padé [3/2]). */
+.reveal .pade-steps { padding-top: 12px; }
+.reveal .pade-steps .tex.display { margin: 0 0 30px; font-size: 1.1em; }
+.reveal .steps > .tex.display:not(.fragment) { color: var(--ink); }
+/* Colour-coded steps: current in ink (blue already means something there). */
+.reveal .steps.ink .fragment.current-fragment { color: var(--ink); }
+/* Marked lines (log of a float): a line shows in ink, then its own empty
+   .mark fragment turns its .term pieces orange; the next line takes them
+   back to the line's colour. */
+.reveal .steps.ink .fragment.visible:has(> .current-fragment) { color: var(--ink); }
+.reveal .steps.ink .term { color: inherit; transition: color 0.4s; }
+.reveal .steps.ink .fragment:has(> .mark.current-fragment) .term { color: var(--orange); }
+
+/* A long display formula (Padé's integer form). */
+.reveal .tex.display.pade-int { margin: 40px 0 48px; }
+.reveal .tex.display.pade-int .katex { font-size: 0.95em; }
+.reveal li .tex.display.pade-int { margin: 14px 0 22px; color: var(--ink); }  /* an equation under a sub-bullet */
+/* An equation with a small plot beside it (Padé in the wild). */
+.reveal .eq-plot { display: flex; align-items: center; gap: 24px; margin: 4px 0 12px; }
+.reveal .eq-plot > .tex.display.pade-int { flex: 1; min-width: 0; margin: 0; }
+.reveal .eq-plot > .tex.display.pade-int .katex-display { text-align: left; margin: 0; }
+.reveal .eq-plot > .tex.display.pade-int .katex-display > .katex { text-align: left; font-size: 0.82em; }
+.reveal .eq-plot > .figure { flex: none; }
+.reveal .eq-plot .legend { display: none; }
+
+/* Workflow: boxes joined by arrows. */
+.reveal .flow { display: flex; align-items: stretch; gap: 0; margin-top: 60px; }
+.reveal .flow .box {
+  flex: 1; padding: 22px 26px; border-radius: 12px; background: #f6f5f2;
+}
+.reveal .flow .box h3 { margin: 0 0 10px; font-size: 30px; font-weight: 650; letter-spacing: -0.01em; }
+.reveal .flow .box p { margin: 0; font-size: 24px; color: var(--muted); }
+.reveal .flow .arrow { flex: none; align-self: center; padding: 0 18px; font-size: 40px; color: var(--muted); }
+
+/* Results tables (the scoreboard). */
+.reveal table.results { border-collapse: collapse; margin: 24px 0 0; font-size: 26px; white-space: nowrap; }
+.reveal table.results th {
+  font-size: 22px; font-weight: 500; color: var(--muted); text-align: right;
+  padding: 0 0 10px 40px; border-bottom: 1.5px solid var(--faint);
+}
+.reveal table.results td {
+  text-align: right; padding: 13px 0 13px 40px; border-bottom: 1px solid var(--faint);
+  font-feature-settings: "tnum" 1;
+}
+.reveal table.results tr.new td { color: var(--blue); }
+.reveal table.results sup { font-size: 0.6em; line-height: 0; vertical-align: 0.7em; }
+.reveal table.results th:first-child, .reveal table.results td:first-child { text-align: left; padding-left: 0; }
+
+/* Labelled steps in a .steps stack: a short heading over its maths. */
+.reveal .steps .step-name { font-size: 26px; font-weight: 600; margin: 0 0 4px; }
+.reveal .steps .fragment > .tex.display { margin-bottom: 8px; }
+.reveal .steps .step-max { font-size: 30px; margin: 0; }
+.reveal .steps.under { padding-left: 34px; }  /* lines under a bullet, aligned with its text */
+.reveal .steps > .fragment:not(.tex) { margin-bottom: 30px; transition: color 0.4s, opacity 0.4s; }
+
+.reveal .progress { color: var(--faint); height: 3px; }
+.reveal .slide-number {
+  background: none; color: var(--muted); font-family: var(--font);
+  font-size: 16px; font-variant-numeric: tabular-nums; right: 12px; bottom: 10px;
+}
+.reveal .slide-number a { color: inherit; text-decoration: none; }
+
+/* --- math ---------------------------------------------------------------- */
+
+.reveal .katex { font-size: 1.05em; }
+.reveal .tex.display { margin: 18px 0; }
+.reveal .tex.display.big .katex { font-size: 1.6em; }
+
+/* Highlights: \htmlClass{hl name c-colour}{...}. While anything on the slide
+   is lit, the rest of the displayed maths fades to grey. */
+.reveal .tex.display, .reveal .hl { transition: color 0.4s; }
+.reveal .has-hl .tex.display { color: #c4c3bf; }
+.reveal .has-hl .sidebar .tex.display { color: var(--ink); }
+.reveal .hl.on.c-blue { color: var(--blue); }
+.reveal .hl.on.c-orange { color: var(--orange); }
+.reveal .hl.on.c-green { color: var(--green); }
+
+.reveal .captions p { font-size: 26px; }
+.reveal p.caption { font-size: 26px; margin: 10px 0 0; }
+.reveal p.caption.fine { font-size: 18px; margin-top: 4px; }  /* a footnote: there if not mentioned */
+.reveal p.credit { position: absolute; left: 88px; top: 668px; margin: 0; font-size: 17px; color: var(--muted); }  /* where an idea came from, bottom left */
+.reveal .captions .fragment { transition: opacity 0.35s; }
+
+/* --- figures ------------------------------------------------------------- */
+
+.reveal .figure { position: relative; }
+.reveal svg.fig { display: block; overflow: visible; }
+.reveal .panes { display: flex; gap: 32px; align-items: flex-start; }
+.reveal .pane { position: relative; }
+.reveal .pane-label { height: 48px; font-size: 26px; }
+.reveal .interp-row { display: flex; gap: 40px; }
+.reveal .interp-row > div { transition: opacity 0.4s; }
+
+.fig .axis { stroke: var(--ink); stroke-width: 1.2; opacity: 0.55; }
+.fig .grid { stroke: var(--faint); stroke-width: 1; stroke-dasharray: 3 4; }
+.fig .guide { fill: none; stroke: var(--faint); stroke-width: 1.5; stroke-dasharray: 4 5; }
+.fig .curve { fill: none; stroke-width: 2.6; stroke-linejoin: round; }
+.fig .band { fill: var(--blue); fill-opacity: 0.06; }
+.reveal .legend { display: flex; flex-wrap: wrap; gap: 6px 36px; margin: 6px 0 0 48px; font-size: 24px; }
+.reveal .legend > div { display: flex; align-items: center; gap: 10px; }
+.fig .curve.dashed { stroke-dasharray: 7 6; stroke-width: 2.2; }
+.fig .marker line { stroke: var(--blue); stroke-width: 2.5; }
+.fig .marker text { font-size: 20px; text-anchor: end; fill: var(--ink); font-weight: 500; }  /* plot markers: 20 kHz at 48 kHz */
+.fig .asymptote { stroke: var(--muted); stroke-width: 1.8; stroke-dasharray: 6 6; }
+.fig .stem { stroke-width: 2.6; }
+.fig .fold-line { stroke: var(--ink); stroke-width: 1.8; stroke-dasharray: 6 5; }
+.fig .fold-label { font-size: 20px; fill: var(--ink); }
+.fig .zoom-frame { fill: var(--paper); stroke: var(--faint); stroke-width: 1.5; }
+.fig .zoom-link { stroke: var(--muted); stroke-width: 1.2; stroke-dasharray: 3 4; }
+.fig .zoom-name { font-size: 20px; fill: var(--muted); text-anchor: end; }
+.fig .zoom-change { font-size: 20px; font-weight: 600; fill: var(--orange); }
+.fig .zoom-box { fill: none; stroke: var(--muted); stroke-width: 2; stroke-dasharray: 7 6; }
+.fig .f32-pi { stroke: var(--ink); stroke-width: 2; stroke-dasharray: 6 5; }
+.fig .zoom-float { stroke: var(--muted); stroke-width: 2; }
+.fig .tick.f32-label { text-anchor: start; }
+.fig text { font-family: var(--font); fill: var(--muted); font-feature-settings: "tnum" 1; }
+.fig .tick { font-size: 17px; text-anchor: middle; }
+.fig .tick.end { text-anchor: end; }
+.fig .axis-name { font-size: 20px; font-style: italic; fill: var(--ink); }
+.fig .float-tick { stroke: var(--blue); stroke-width: 2; }
+.fig .node-dot { fill: var(--orange); }
+.reveal .nodes-readout { position: absolute; right: 20px; top: 196px; font-size: 26px; transition: opacity 0.4s; }
+.reveal .nodes-readout.side { top: auto; bottom: -46px; right: 10px; font-size: 24px; }
+.reveal .nodes-label { position: absolute; top: 0; transition: opacity 0.4s; }
+.fig .runge-band { fill: var(--orange); fill-opacity: 0.12; }
+.fig .runge-label { font-size: 22px; font-weight: 600; fill: var(--orange); }
+
+/* θ wraps onto the circle (wrap.js). */
+.reveal .pane-label.stack { position: relative; }
+.reveal .pane-label.stack > div { position: absolute; left: 50px; top: 0; }
+.fig .theta-axis { fill: none; stroke: var(--ink); stroke-width: 2.4; stroke-linecap: round; }
+.fig .spoke { stroke: var(--muted); stroke-width: 1; stroke-opacity: 0.5; }
+.fig .drop { stroke: var(--orange); stroke-width: 1.3; stroke-dasharray: 3 4; }
+
+/* Equal angles, projected (angles.js). */
+
+/* Two things side by side, row by row (audio vs Chebyshev). */
+.reveal .analogy {
+  display: grid; grid-template-columns: auto 1fr 1fr; column-gap: 48px;
+  margin-top: 40px; font-size: 32px; align-items: stretch;
+}
+/* Cells stretch to their row, so every rule lines up; each cell's content
+   is one <span>, centred in it. */
+.reveal .analogy > div { display: flex; align-items: center; padding: 18px 0; border-bottom: 1px solid var(--faint); }
+.reveal .analogy .head { font-size: 26px; font-weight: 600; color: var(--muted); padding-top: 0; }
+.reveal .analogy .label { font-size: 24px; color: var(--muted); }
+
+/* Chebyshev definition slide: the legend lists each T_n written out. */
+.reveal .cheb-defs .legend > div { transition: opacity 0.4s; }
+.reveal .cheb-defs .legend {
+  display: grid; grid-template-columns: auto auto; justify-content: space-between;
+  gap: 8px 20px; margin: 14px 8px 0 40px; font-size: 21px;
+}
+
+/* Chebyshev definition beside the drawing machine. */
+.reveal .cheb-machine { display: flex; gap: 24px; align-items: flex-start; margin-top: -40px; }
+.reveal .cheb-machine .steps { flex: 1; padding-top: 50px; }
+.reveal .cheb-machine .steps .tex.display { margin-bottom: 14px; }
+.reveal .cheb-machine .steps .tex.display.big { margin-bottom: 22px; }
+.reveal .cheb-punch { margin-top: 18px; }
+.reveal .cheb-punch li { font-size: 30px; margin-bottom: 8px; }
+.reveal .cheb-machine .figure { flex: none; }
+
+/* Error envelope slide: formula above two panes, a caption per step. */
+.reveal .tex.display.env-formula { margin: -6px 0 6px; }
+.reveal .env-captions p { font-size: 26px; margin: 8px 0 0; }
+
+/* Interpolation error: the formula alone, large, with callouts under it. */
+.reveal .interp-err { margin-top: 110px; }
+.reveal .interp-err .tex.display.big .katex { font-size: 2em; }
+.reveal .interp-err .callouts { height: 150px; }
+.reveal .interp-err .callout { font-size: 26px; }
+
+/* Implementation steps: a bullet, its line of Python under it. */
+.reveal ul.impl-steps > li { margin-bottom: 30px; }
+.reveal ul.impl-steps pre { font-size: 21px; margin-top: 12px; font-weight: 400; }
+.reveal ul.log2-subs > li { margin-top: 14px; }  /* Approximation strategy: room for the fractions */
+.reveal pre.log2-fit { font-size: 18px; margin: 22px 0 0; width: auto; }  /* Approximation strategy: the fit of P, under its bullet */
+.reveal pre.log2-fit code { padding: 16px 22px; }
+.reveal .tanh-code pre { margin: 0 0 14px; }  /* Build in the asymptote: the fit over the C++ */
+.reveal .tanh-code pre.hl { transition: opacity 0.4s; }  /* data-hl="py" / "cpp" lights one block: */
+.reveal .tanh-code:has(pre.hl.on) pre.hl:not(.on) { opacity: 0.35; }  /* the other fades */
+.reveal pre.impl-cpp { font-size: 21px; margin-top: 10px; }
+.reveal pre.impl-cpp.log2-cpp { font-size: 15px; }  /* 22 lines */
+.reveal pre.impl-cpp.log2-plain-cpp { font-size: 17px; }  /* 17 lines */
+.reveal pre.split-float { width: fit-content; margin: 30px auto 0; font-size: 22px; }
+.reveal .code-pair.exp2-pair { gap: 16px; }
+.reveal .code-pair.exp2-pair pre { font-size: 17px; }  /* pow2i beside round_exp2_6 */
+.reveal pre.rsqrt-cpp { font-size: 16px; }
+.reveal pre.bench-cpp { font-size: 16px; line-height: 1.38; }  /* bench/simple/loops.cpp: constants, escape, bench, 21 lines */
+.reveal pre.bench-cpp.main { font-size: 20px; }  /* main.cpp's main, 14 lines (retired) */
+.reveal pre.bench-cpp.cold { font-size: 15px; line-height: 1.26; }  /* cold.cpp: evict and bench_cold, 28 lines */
+.reveal pre.bench-cpp.cold code { padding: 12px 22px; }
+.reveal pre.bench-cpp.loops { font-size: 15px; line-height: 1.3; }  /* loops.cpp: three inner loops, stepped by click */
+.reveal .loops-split table.results { margin-top: 0; }
+.reveal .bonus-row table.results { margin-top: 28px; font-size: 22px; }  /* the bonus slides: the method's scoreboard row, as a note under the code */
+.reveal .bonus-row table.results th:first-child, .reveal .bonus-row table.results td:first-child { text-align: right; }  /* beside the loops: rules from the start, a row's contents per click */
+.reveal .loops-setup { margin-top: 18px; font-size: 17px; line-height: 1.4; color: var(--muted); }  /* machine, compiler, method */
+.reveal .loops-setup p { margin: 0; }
+.reveal pre code table.hljs-ln { width: auto; margin: 0; border-collapse: collapse; }  /* data-line-numbers steps: */
+.reveal pre code .hljs-ln td { padding: 0; border: none; line-height: inherit; }     /* a plain block, */
+.reveal pre code .hljs-ln-numbers { display: none; }                                 /* no gutter */
+.reveal pre.code-wrapper { position: relative; }  /* each step is a clone of the code: stack them */
+.reveal pre code.hljs:not(:first-child).fragment { position: absolute; top: 0; left: 0; width: 100%; box-sizing: border-box; }
+.reveal .code-pair { display: flex; gap: 24px; align-items: flex-start; margin-top: 8px; }
+.reveal .code-pair pre { font-size: 15px; }
+.reveal .guard-cpp pre { font-size: 16px; margin: 6px 0 12px; }  /* Keeping the split under fast-math: macros over the guarded function */
+.reveal .code-pair.remez-pair { gap: 16px; }
+.reveal .code-pair.remez-pair pre { font-size: 15px; flex: none; }  /* The Remez exchange (preview) */
+.reveal .fig-stack { display: flex; flex-direction: column; gap: 4px; flex: none; }
+.reveal .fig-stack > .figure:first-child .legend { display: none; }  /* the error plot's legend names both */
+.reveal ul.impl-steps pre.tan-impl { font-size: 18px; margin: 6px 0 0; }  /* tan: the quotient to interpolate, then the C++ */
+.reveal pre.tan-impl code { padding: 10px 22px; }
+.reveal .tan-form { position: absolute; right: 110px; top: 500px; margin: 0; }  /* the form beside the C++ that implements it, to leave room for both code blocks */
+.reveal .code-pair.split-pair { gap: 16px; }
+.reveal .code-pair.split-pair pre { font-size: 15px; flex: none; }  /* Split π in C++: the guarded function, its macros beside it on the last click */
+.reveal .code-pair.split-pair pre + pre { font-size: 14px; max-width: none; }  /* the macros, smaller, may run past the right margin */
+
+/* Factor out the zeros: the form as display maths under its bullet. */
+.reveal li .tex.display.factor-form { margin: 14px 0 22px; color: var(--ink); font-weight: 400; }
+
+/* Callouts under highlighted maths (main.js centres each under its term):
+   an arrow up, a short label, hidden until their highlight is on. */
+.reveal .callouts { position: relative; height: 146px; margin-top: -14px; }
+.reveal .callout {
+  position: absolute; top: 0; transform: translateX(-50%);
+  text-align: center; white-space: nowrap; font-size: 22px; line-height: 1.25;
+}
+.reveal .callout svg { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+/* Steps under a lit equation keep their own greys (past muted, current ink). */
+.reveal .has-hl .steps .tex.display.fragment.visible:not(.current-fragment) { color: var(--muted); }
+.reveal .annot { opacity: 0; transition: opacity 0.4s, color 0.4s; }
+.reveal .annot.on { opacity: 1; }
+
+/* Pop-over notes: an informal aside on a figure, the last click on a slide.
+   Everything sits in slide coordinates (1280 x 720) on a full-slide layer, so
+   the box and its block arrow are placed by hand. The box pops in, the
+   arrow fades with it. Markup:
+   <div class="pop fragment"><div class="pop-box" style="left:..;top:..;width:..">text</div>
+   <svg viewBox="0 0 1280 720"><path d="M... Z"/></svg></div>
+   (one filled polygon: shaft and head). */
+.reveal .pop { position: absolute; left: 0; top: 0; width: 1280px; height: 720px; pointer-events: none; }
+.reveal .pop .pop-box {
+  position: absolute; box-sizing: border-box; padding: 12px 20px 14px;
+  background: #f6f5f2; border-radius: 12px;  /* as .sidebar */
+  font-size: 28px; font-weight: 500; line-height: 1.25; text-align: center; text-wrap: balance;
+  transform: scale(0.92); transition: transform 0.3s cubic-bezier(0.3, 1.4, 0.5, 1);
+}
+.reveal .pop.visible .pop-box { transform: scale(1); }
+.reveal .sigmoid-pop .pop-box { padding: 10px 14px 6px; }  /* Build in the asymptote: a small plot in the box */
+.reveal .sigmoid-pop .legend { font-size: 20px; }
+.reveal .pop > svg { position: absolute; left: 0; top: 0; width: 1280px; height: 720px; overflow: visible; }
+.reveal .pop > svg path { fill: var(--faint); }  /* the arrow, not a figure inside the box */
+.reveal .pop > svg path.shaft { fill: none; stroke: var(--faint); stroke-width: 10; }  /* a curved arrow: stroked shaft, filled head */
+/* The pop is the click after the last step; keep that step blue. */
+.reveal section:has(.pop.visible) .steps > .fragment:last-child { color: var(--blue); }
+
+/* Effects of degree: three small plots side by side, one per click. */
+.reveal .degree-panels { display: flex; gap: 24px; margin-top: 12px; }
+.reveal .degree-panels > div { flex: none; width: 352px; }
+.reveal .degree-panels .step-name { font-size: 24px; font-weight: 600; margin: 0 0 6px; }
+.reveal .degree-panels .tick { font-size: 18px; }
+.reveal .degree-panels .legend { font-size: 17px; gap: 4px 14px; flex-wrap: nowrap; white-space: nowrap; }
+
+/* Chebyshev drawing machine: θ in blue, nθ in orange, the pen in ink. */
+.fig .unit-circle { fill: none; stroke: var(--faint); stroke-width: 2; }
+.fig .hub { fill: var(--muted); }
+.fig .ref { stroke: var(--faint); stroke-width: 1.5; stroke-dasharray: 4 4; }
+.fig .cheb-frame { fill: none; stroke: var(--faint); stroke-width: 1.5; }
+.fig .radius { stroke-width: 2.5; }
+.fig .radius.theta, .fig .angle-arc.theta { stroke: var(--blue); }
+.fig .radius.ntheta { stroke: var(--orange); }
+.fig .angle-arc { fill: none; stroke-width: 2; }
+.fig .guide-line { stroke-width: 1.5; stroke-dasharray: 5 5; }
+.fig .guide-line.theta { stroke: var(--blue); }
+.fig .guide-line.ntheta { stroke: var(--orange); }
+.fig .dot.theta { fill: var(--blue); }
+.fig .dot.ntheta { fill: var(--orange); }
+.fig .dot.pen { fill: var(--ink); }
+.fig .angle-label { font-size: 26px; font-style: italic; }
+.fig .angle-label.theta { fill: var(--blue); }
+.fig .angle-label.ntheta { fill: var(--orange); }
+.fig .cheb-trace { fill: none; stroke: var(--ink); stroke-width: 3; }
+.fig .cheb-done { fill: none; stroke: var(--ink); stroke-width: 2; opacity: 0.25; }
+
+/* Float anatomy: bit cells by field, over a binade axis. */
+.reveal .float-bits { display: flex; gap: 20px; justify-content: center; margin: 24px 0 0; }
+.reveal .float-bits .cells { display: flex; gap: 2px; }
+.reveal .float-bits .cells span {
+  width: 29px; height: 48px; display: flex; align-items: center; justify-content: center;
+  font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 24px;
+  border-radius: 4px; background: var(--cell); color: var(--muted);
+  transition: background 0.35s, color 0.35s;
+}
+.reveal .float-bits .cells span.one { background: var(--cell-on); color: #fff; }
+.reveal .float-bits .sign { --cell: #fbe3d9; --cell-on: var(--orange); }
+.reveal .float-bits .exp { --cell: #d5f0e5; --cell-on: var(--green); }
+.reveal .float-bits .frac { --cell: #dce9f8; --cell-on: var(--blue); }
+.reveal .float-bits .field-name { font-size: 20px; color: var(--muted); margin: 8px 0 0; text-align: center; }
+.reveal .float-bits .field-value { font-size: 22px; text-align: center; min-height: 32px; }
+.reveal .float-bits .field { transition: opacity 0.35s; will-change: opacity; }  /* own layers: the fields fade in sync, in one piece */
+.reveal .float-bits .field.dim { opacity: 0.25; }
+.reveal .float-eq { display: flex; justify-content: center; gap: 48px; margin: 26px 0 8px; font-size: 32px; }
+.reveal .float-caption { text-align: center; font-size: 24px; color: var(--muted); margin-top: 4px; }
+.reveal .float-caption sup { font-size: 0.65em; vertical-align: 0.6em; line-height: 0; }
+.reveal .float-ulp { text-align: center; font-size: 24px; color: var(--muted); margin: 0 0 4px; }
+.fig .binade-band { fill: var(--blue); fill-opacity: 0; transition: fill-opacity 0.4s; }
+.fig .binade-band.on { fill-opacity: 0.1; }
+.fig .binade-edge { stroke: var(--ink); stroke-width: 1.5; opacity: 0.4; }
+.fig .float-marker { stroke: var(--blue); stroke-width: 2.5; }
+.fig .float-dot { fill: var(--blue); }
+.fig .float-label { font-size: 22px; text-anchor: middle; fill: var(--ink); font-weight: 600; }
+.fig .zoom-tick { font-size: 20px; font-family: ui-monospace, "SF Mono", Menlo, monospace; }
+.fig .float-tick.nearest { stroke-width: 4; }
+.fig .zoom-tick.nearest { fill: var(--blue); font-weight: 600; }
+.fig .true-marker { stroke: var(--orange); stroke-width: 2.5; }
+.fig .true-dot { fill: var(--orange); }
+.fig .true-label { font-size: 30px; font-style: italic; text-anchor: middle; fill: var(--orange); }
+.fig .round-arrow { stroke: var(--orange); stroke-width: 2; }
+.fig .round-head { fill: var(--orange); }
+.fig .binade { stroke: var(--faint); stroke-width: 2; }
+.reveal .binade-label { text-align: center; font-size: 22px; color: var(--muted); }
+.fig .pane-tag { font-size: 17px; fill: var(--muted); }
+
+/* Measuring error: the metrics on one number line (errline.js), top right. */
+.reveal .figure.err-corner { position: absolute; top: 130px; right: 40px; }
+.fig .err-true { fill: var(--ink); }
+.fig .err-approx { fill: var(--orange); }
+.fig .err-guide { stroke: var(--muted); stroke-width: 1.2; stroke-dasharray: 3 4; }
+.fig .err-span line, .fig .err-mark { stroke: var(--orange); stroke-width: 2.6; }
+.fig .err-mag line { stroke: var(--ink); stroke-width: 2; }
+.fig .err-gap line { stroke: var(--blue); stroke-width: 2.6; }
+.reveal .err-label { position: absolute; transform: translateX(-50%); white-space: nowrap; font-size: 24px; line-height: 1.4; color: var(--ink); pointer-events: none; }
+
+/* Split π number lines (splitpi.js). */
+.fig .float-tick.hi { stroke-width: 4; }
+.fig .pi-marker { stroke: var(--ink); stroke-width: 2.5; }
+.fig .zero-marker { stroke: var(--ink); stroke-width: 2; stroke-opacity: 0.7; }
+.fig .x-dot { fill: var(--ink); }
+.fig .lo-seg { stroke: var(--orange); stroke-width: 6; stroke-linecap: round; }
+.fig .dense-ticks { stroke: var(--blue); stroke-width: 1; opacity: 0.45; }
+.fig .bracket { fill: none; stroke-width: 2.2; }
+.fig .bracket.ink { stroke: var(--ink); }
+.fig .bracket.blue { stroke: var(--blue); }
+.reveal .splitpi-label { font-size: 26px; line-height: 44px; color: var(--ink); }
+.reveal .splitpi-label.caption { font-size: 22px; color: var(--muted); }
+
+/* Manual controls: present but out of the way until you reach for them. */
+.reveal .fig-controls {
+  position: absolute; right: 0; bottom: -44px;
+  display: flex; gap: 14px; align-items: center;
+  font-size: 15px; color: var(--muted);
+  opacity: 0.18; transition: opacity 0.2s;
+}
+.reveal .fig-controls:hover { opacity: 1; }
+.reveal .fig-controls button {
+  font: inherit; color: var(--ink); background: none;
+  border: 1px solid var(--faint); border-radius: 6px; padding: 2px 9px; cursor: pointer;
+}
+.reveal .fig-controls .stepper { display: inline-flex; gap: 6px; align-items: center; }
+.reveal .fig-controls .name { font-style: italic; }
+.reveal .fig-controls .val { min-width: 1.6em; text-align: center; color: var(--ink); }
+.reveal .fig-controls input[type="range"] { width: 220px; accent-color: var(--blue); }
+
+/* Move the octave (foldline.js): m on a line over log2 m. */
+.fig .fold-bar.keep { fill: var(--blue); fill-opacity: 0.35; }
+.fig .fold-bar.move { fill: var(--orange); fill-opacity: 0.55; }
+.fig .curve.fold-all { stroke: var(--faint); stroke-width: 2.4; }
+.fig .curve.fold-keep { stroke: var(--blue); stroke-width: 3.4; }
+.fig .curve.fold-move { stroke: var(--orange); stroke-width: 3.4; }
+
+/* Split the float: what each constant in the float-only code means. */
+.reveal table.consts { margin: 18px auto 0; border-collapse: collapse; font-size: 24px; }
+.reveal table.consts td { padding: 4px 14px; border: none; vertical-align: baseline; }
+.reveal table.consts td:first-child { text-align: right; }
+
+/* Rehearsal contents overlay (rehearse.js, T). Outside the scaled slide. */
+.contents-overlay {
+  position: fixed; inset: 0; z-index: 100; overflow: auto; padding: 24px 32px;
+  background: rgba(255, 255, 255, 0.97); font-family: var(--font); color: var(--ink); font-size: 14px;
+}
+.contents-overlay header { margin-bottom: 16px; color: var(--muted); }
+.contents-overlay header b { color: var(--ink); }
+.contents-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px 28px; }
+.contents-grid h3 { margin: 0; font-size: 16px; }
+.contents-grid p { margin: 2px 0 6px; color: var(--muted); }
+.contents-grid ol { list-style: none; margin: 0; padding: 0; }
+.contents-grid li { padding: 1px 4px; border-radius: 4px; cursor: pointer; line-height: 1.45; }
+.contents-grid li:hover { background: #eef3fb; }
+.contents-grid li.here { background: #dce9f8; }
+.contents-grid li .n { display: inline-block; width: 2.2em; color: var(--muted); font-variant-numeric: tabular-nums; }

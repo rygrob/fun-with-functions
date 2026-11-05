@@ -1,0 +1,74 @@
+adc tanh bench (clang 21.0.0, fast-math off, release)
+
+Timing, tanh x, f32: ns per sample, speedup vs std::tanh; x uniform in [-5, 5]
+  indep / vector: 65536 sorted inputs, escape every sample or once per pass, median of 100 passes.
+  cold: 256-sample ramp through that range after evicting 64 MB, trimmed mean of 200
+  method                                 indep             vector               cold        
+  std::tanh                               2.03    1.0x       2.03    1.0x       2.57    1.0x
+  clamp_tanh_9                            0.62    3.3x       0.15   13.1x       0.16   15.8x
+  pade_tanh_7_6                           1.33    1.5x       0.29    7.0x       0.28    9.3x
+  pade_clamp_tanh_7_6                     0.93    2.2x       0.25    8.1x       0.26    9.8x
+  pade_tanh_9_8                           1.57    1.3x       0.33    6.1x       0.35    7.3x
+  vsl_sigmoid_tanh_9                      1.11    1.8x       0.31    6.5x       0.29    8.8x
+  sigmoid_tanh_9                          1.08    1.9x       0.30    6.7x       0.30    8.6x
+  sigmoid_tanh_11                         1.13    1.8x       0.32    6.3x       0.31    8.2x
+  sigmoid_clamp_tanh_9                    1.13    1.8x       0.32    6.3x       0.31    8.2x
+  sigmoid_clamp_tanh_11                   1.23    1.7x       0.33    6.1x       0.33    7.8x
+  sigmoid_cheb_clamp_tanh_9               1.13    1.8x       0.32    6.3x       0.31    8.2x
+  sigmoid_rel_clamp_tanh_9                1.10    1.8x       0.32    6.3x       0.31    8.2x
+  sigmoid_relpin_clamp_tanh_9             1.13    1.8x       0.32    6.3x       0.31    8.2x
+  sigmoid_rel_clamp_tanh_11               1.23    1.7x       0.33    6.1x       0.34    7.5x
+  sigmoid_relpin_clamp_tanh_11            1.23    1.7x       0.34    6.1x       0.34    7.6x
+  exp2_tanh                               2.10    1.0x       0.59    3.4x       0.62    4.2x
+  expm1_tanh                              1.69    1.2x       0.42    4.8x       0.44    5.9x
+  vsl::tanh, 1/sqrt (scalar)              1.06    1.9x       0.30    6.7x       0.30    8.5x
+  vsl::tanh, vrsqrte (vector)             0.72    2.8x       0.72    2.8x       0.79    3.2x
+    + 1 Newton step                       0.98    2.1x       0.99    2.1x       1.08    2.4x
+    + 2 Newton steps                      1.28    1.6x       1.29    1.6x       1.36    1.9x
+
+Timing, tanh x, f64: ns per sample, speedup vs std::tanh; x uniform in [-5, 5]
+  indep / vector: 65536 sorted inputs, escape every sample or once per pass, median of 100 passes.
+  cold: 256-sample ramp through that range after evicting 64 MB, trimmed mean of 200
+  method                                 indep             vector               cold        
+  std::tanh                               3.71    1.0x       3.88    1.0x       4.11    1.0x
+  clamp_tanh_9                            0.62    6.0x       0.32   12.2x       0.32   12.7x
+  pade_tanh_7_6                           1.41    2.6x       0.58    6.7x       0.59    7.0x
+  pade_clamp_tanh_7_6                     0.93    4.0x       0.50    7.7x       0.52    8.0x
+  pade_tanh_9_8                           1.58    2.3x       0.67    5.8x       0.69    6.0x
+  vsl_sigmoid_tanh_9                      1.28    2.9x       0.60    6.4x       0.60    6.8x
+  sigmoid_tanh_9                          1.12    3.3x       0.62    6.3x       0.59    6.9x
+  sigmoid_tanh_11                         1.20    3.1x       0.65    6.0x       0.64    6.4x
+  sigmoid_clamp_tanh_9                    1.15    3.2x       0.62    6.2x       0.63    6.5x
+  sigmoid_clamp_tanh_11                   1.24    3.0x       0.67    5.8x       0.66    6.2x
+  sigmoid_cheb_clamp_tanh_9               1.10    3.4x       0.64    6.0x       0.62    6.6x
+  sigmoid_rel_clamp_tanh_9                1.10    3.4x       0.62    6.2x       0.63    6.5x
+  sigmoid_relpin_clamp_tanh_9             1.71    2.2x       0.62    6.2x       0.62    6.6x
+  sigmoid_rel_clamp_tanh_11               1.71    2.2x       0.67    5.8x       0.68    6.1x
+  sigmoid_relpin_clamp_tanh_11            1.24    3.0x       0.67    5.8x       0.67    6.1x
+  exp2_tanh                               2.14    1.7x       1.22    3.2x       1.25    3.3x
+  expm1_tanh                              1.72    2.2x       0.86    4.5x       0.92    4.5x
+
+Error, tanh x, f32: every float, every normal x
+  method                          max ULP           at x    max rel    max abs           at x      abs dB      max |y|
+  clamp_tanh_9                   1.32e+05      2.7999995     0.0079    0.00785      2.7999995       -42.1  1.000477672
+  pade_tanh_7_6                       inf       10861961        inf        inf       10861961         inf          inf
+  pade_clamp_tanh_7_6             1192.89      4.7898831   7.11e-05   7.11e-05      4.7898831       -83.0  0.999932885
+  pade_tanh_9_8                       inf      356444.47        inf        inf      356444.47         inf          inf
+  vsl_sigmoid_tanh_9                  inf      77710.461        inf        inf      77710.461         inf          inf
+  sigmoid_tanh_9                      inf      76853.234        inf        inf      76853.234         inf          inf
+  sigmoid_tanh_11                     inf      15176.774        inf        inf      15176.774         inf          inf
+  sigmoid_clamp_tanh_9              78.51    0.015614729   4.76e-06   8.51e-07     0.79076517      -121.4  1.000000000
+  sigmoid_clamp_tanh_11              9.07    0.061925527   5.85e-07   1.71e-07       1.331012      -135.3  1.000000000
+  sigmoid_cheb_clamp_tanh_9         24.05      4.8651237   1.51e-06   1.43e-06      4.8651237      -116.9  0.999999940
+  sigmoid_rel_clamp_tanh_9          16.52    0.015614787   1.07e-06   9.35e-07      5.2138028      -120.6  1.000000000
+  sigmoid_relpin_clamp_tanh_9       17.11     0.54531163   1.04e-06   9.66e-07      5.2140641      -120.3  1.000000000
+  sigmoid_rel_clamp_tanh_11          4.33     0.12563665   2.96e-07   1.72e-07      6.2537341      -135.3  1.000000000
+  sigmoid_relpin_clamp_tanh_11       3.94     0.25456163   2.63e-07   1.75e-07       6.253911      -135.2  1.000000000
+  exp2_tanh                      2.10e+07 -4.4703491e-08       1.67   1.89e-07     -1.5068307      -134.5  1.000000000
+  expm1_tanh                         3.81    0.062108338   2.59e-07   1.52e-07     -1.6484401      -136.4  1.000000000
+  vsl::tanh, 1/sqrt (scalar)          inf      77710.461        inf        inf      77710.461         inf          inf
+  vsl::tanh, vrsqrte (vector)         inf      77710.461        inf        inf      77710.461         inf          inf
+    + 1 Newton step                   inf      562.09882        inf        inf      562.09882         inf          inf
+    + 2 Newton steps                  inf      562.09882        inf        inf      562.09882         inf          inf
+  std::tanh                          0.82     0.72701186   7.83e-08   4.87e-08     0.72701186      -146.3  1.000000000
+  (79.9 s on 12 threads)

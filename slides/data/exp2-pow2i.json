@@ -1,0 +1,1 @@
+{"generic":"template<typename T>\ninline auto pow2i(ieee_int<T> n) -> T\n{\n    using F = ieee<T>;\n    using U = typename F::bits;\n    const auto biased = static_cast<U>(n + F::bias);\n    const auto field = biased << F::sig_bits;\n    return std::bit_cast<T>(field);\n}\n"}

@@ -1,0 +1,80 @@
+adc tan(pi x) bench (clang 21.0.0, fast-math off, release)
+
+Timing, tan(pi x), f32: ns per sample, speedup vs std::tan(pi x)
+  indep / vector: 65536 sorted inputs, escape every sample or once per pass, median of 100 passes.
+  cold: 256-sample 20 Hz - 20 kHz cutoff sweep after evicting 64 MB, trimmed mean of 200
+  method                                 indep             vector               cold        
+  std::tan(pi x)                          2.35    1.0x       2.35    1.0x       2.25    1.0x
+  pade_tan_pi_3_2                         0.51    4.6x       0.16   14.8x       0.13   17.6x
+  pade_tan_pi_5_4                         0.71    3.3x       0.20   12.0x       0.18   12.7x
+  pade_tan_pi_7_6                         0.87    2.7x       0.24    9.9x       0.25    9.2x
+  pade_tan_pi_9_8                         1.05    2.2x       0.27    8.7x       0.29    7.8x
+  cheb_turns_tan_pi_3                     0.56    4.2x       0.17   14.2x       0.16   14.1x
+  cheb_turns_tan_pi_5                     0.67    3.5x       0.18   12.8x       0.17   13.2x
+  cheb_turns_tan_pi_7                     0.73    3.2x       0.21   11.4x       0.18   12.3x
+  cheb_turns_tan_pi_9                     0.80    2.9x       0.23   10.4x       0.21   10.9x
+  cheb_turns_tan_pi_11                    0.93    2.5x       0.25    9.5x       0.27    8.5x
+adc tan(pi x) bench (clang 21.0.0, fast-math off, release)
+
+Timing, tan(pi x), f32: ns per sample, speedup vs std::tan(pi x)
+  indep / vector: 65536 sorted inputs, escape every sample or once per pass, median of 100 passes.
+  cold: 256-sample 20 Hz - 20 kHz cutoff sweep after evicting 64 MB, trimmed mean of 200
+  method                                 indep             vector               cold        
+  std::tan(pi x)                          2.35    1.0x       2.35    1.0x       2.27    1.0x
+  pade_tan_pi_3_2                         0.51    4.6x       0.16   14.8x       0.14   15.8x
+  pade_tan_pi_5_4                         0.71    3.3x       0.20   12.0x       0.19   11.7x
+  pade_tan_pi_7_6                         0.87    2.7x       0.24    9.9x       0.26    8.7x
+  pade_tan_pi_9_8                         1.04    2.3x       0.27    8.8x       0.28    8.0x
+  cheb_turns_tan_pi_3                     0.56    4.2x       0.17   14.2x       0.16   14.3x
+  cheb_turns_tan_pi_5                     0.67    3.5x       0.18   12.8x       0.19   11.9x
+  cheb_turns_tan_pi_7                     0.74    3.2x       0.21   11.4x       0.18   12.6x
+  cheb_turns_tan_pi_9                     0.84    2.8x       0.22   10.5x       0.22   10.4x
+  cheb_turns_tan_pi_11                    0.89    2.6x       0.25    9.5x       0.29    7.8x
+adc tan(pi x) bench (clang 21.0.0, fast-math off, release)
+
+Timing, tan(pi x), f32: ns per sample, speedup vs std::tan(pi x)
+  indep / vector: 65536 sorted inputs, escape every sample or once per pass, median of 100 passes.
+  cold: 256-sample 20 Hz - 20 kHz cutoff sweep after evicting 64 MB, trimmed mean of 200
+  method                                 indep             vector               cold        
+  std::tan(pi x)                          2.35    1.0x       2.35    1.0x       2.20    1.0x
+  pade_tan_pi_3_2                         0.51    4.6x       0.16   14.8x       0.12   18.3x
+  pade_tan_pi_5_4                         0.71    3.3x       0.20   12.0x       0.19   11.4x
+  pade_tan_pi_7_6                         0.87    2.7x       0.24    9.9x       0.25    8.8x
+  pade_tan_pi_9_8                         1.04    2.3x       0.27    8.8x       0.28    7.8x
+  cheb_turns_tan_pi_3                     0.56    4.2x       0.17   14.2x       0.16   13.8x
+  cheb_turns_tan_pi_5                     0.67    3.5x       0.18   12.8x       0.16   13.5x
+  cheb_turns_tan_pi_7                     0.74    3.2x       0.21   11.4x       0.20   10.8x
+  cheb_turns_tan_pi_9                     0.85    2.8x       0.23   10.4x       0.23    9.5x
+  cheb_turns_tan_pi_11                    0.89    2.7x       0.25    9.5x       0.26    8.3x
+adc tan(pi x) bench (clang 21.0.0, fast-math off, release)
+
+Timing, tan(pi x), f32: ns per sample, speedup vs std::tan(pi x)
+  indep / vector: 65536 sorted inputs, escape every sample or once per pass, median of 100 passes.
+  cold: 256-sample 20 Hz - 20 kHz cutoff sweep after evicting 64 MB, trimmed mean of 200
+  method                                 indep             vector               cold        
+  std::tan(pi x)                          2.35    1.0x       2.35    1.0x       2.22    1.0x
+  pade_tan_pi_3_2                         0.51    4.6x       0.16   14.8x       0.12   17.8x
+  pade_tan_pi_5_4                         0.71    3.3x       0.20   11.9x       0.19   12.0x
+  pade_tan_pi_7_6                         0.87    2.7x       0.24    9.9x       0.24    9.2x
+  pade_tan_pi_9_8                         1.04    2.3x       0.27    8.8x       0.28    7.9x
+  cheb_turns_tan_pi_3                     0.56    4.2x       0.17   14.2x       0.16   14.3x
+  cheb_turns_tan_pi_5                     0.67    3.5x       0.18   12.8x       0.17   13.2x
+  cheb_turns_tan_pi_7                     0.75    3.1x       0.21   11.4x       0.19   11.7x
+  cheb_turns_tan_pi_9                     0.83    2.8x       0.22   10.5x       0.23    9.8x
+  cheb_turns_tan_pi_11                    0.89    2.6x       0.25    9.6x       0.26    8.6x
+adc tan(pi x) bench (clang 21.0.0, fast-math off, release)
+
+Timing, tan(pi x), f32: ns per sample, speedup vs std::tan(pi x)
+  indep / vector: 65536 sorted inputs, escape every sample or once per pass, median of 100 passes.
+  cold: 256-sample 20 Hz - 20 kHz cutoff sweep after evicting 64 MB, trimmed mean of 200
+  method                                 indep             vector               cold        
+  std::tan(pi x)                          2.35    1.0x       2.35    1.0x       2.24    1.0x
+  pade_tan_pi_3_2                         0.52    4.6x       0.16   14.8x       0.14   15.5x
+  pade_tan_pi_5_4                         0.71    3.3x       0.20   12.0x       0.17   13.1x
+  pade_tan_pi_7_6                         0.87    2.7x       0.24   10.0x       0.23    9.6x
+  pade_tan_pi_9_8                         1.04    2.3x       0.27    8.8x       0.28    7.9x
+  cheb_turns_tan_pi_3                     0.56    4.2x       0.17   14.2x       0.16   14.3x
+  cheb_turns_tan_pi_5                     0.73    3.2x       0.20   11.7x       0.18   12.7x
+  cheb_turns_tan_pi_7                     0.76    3.1x       0.21   11.4x       0.21   10.6x
+  cheb_turns_tan_pi_9                     0.83    2.8x       0.23   10.4x       0.22   10.0x
+  cheb_turns_tan_pi_11                    0.92    2.6x       0.25    9.5x       0.24    9.5x

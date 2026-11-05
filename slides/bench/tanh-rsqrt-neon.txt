@@ -1,0 +1,7 @@
+adc rsqrt: sigmoid_tanh_9, NEON, every float in [-20, 20]
+  method                   max abs dB       max |y|  buffer ns
+  std::sqrt (compiler)         -121.2   1.000000000      0.305
+  sqrt + div                   -121.4   1.000000000      0.356
+  rsqrt estimate                -49.7   1.003276825      0.285
+  + 1 Newton step               -95.5   1.000000119      0.366
+  + 2 Newton steps             -120.9   1.000000119      0.499

@@ -1,0 +1,80 @@
+adc log2 bench (clang 21.0.0, fast-math off, release)
+
+Timing, log2 x, f32: ns per sample, speedup vs std::log2; log2 x uniform in [-20, 10]
+  indep / vector: 65536 sorted inputs, escape every sample or once per pass, median of 100 passes.
+  cold: 256-sample ramp through that range after evicting 64 MB, trimmed mean of 200
+  method                                 indep             vector               cold        
+  std::log2                               2.06    1.0x       1.91    1.0x       2.24    1.0x
+  bits_log2_tuned                         0.38    5.4x       0.08   24.4x       0.09   26.1x
+  mantissa_log2_7                         0.81    2.5x       0.27    7.2x       0.30    7.6x
+  mantissa_log2_9                         0.90    2.3x       0.31    6.1x       0.33    6.7x
+  fold15_log2_7                           0.97    2.1x       0.40    4.8x       0.41    5.5x
+  fold15_log2_9                           1.17    1.8x       0.45    4.3x       0.47    4.8x
+  foldsqrt2_log2_7                        0.97    2.1x       0.40    4.8x       0.43    5.2x
+  foldsqrt2_log2_9                        1.17    1.8x       0.45    4.3x       0.49    4.6x
+  atanh_log2_5                            1.14    1.8x       0.42    4.5x       0.44    5.1x
+  atanh_log2_7                            1.28    1.6x       0.46    4.1x       0.47    4.7x
+adc log2 bench (clang 21.0.0, fast-math off, release)
+
+Timing, log2 x, f32: ns per sample, speedup vs std::log2; log2 x uniform in [-20, 10]
+  indep / vector: 65536 sorted inputs, escape every sample or once per pass, median of 100 passes.
+  cold: 256-sample ramp through that range after evicting 64 MB, trimmed mean of 200
+  method                                 indep             vector               cold        
+  std::log2                               2.11    1.0x       1.91    1.0x       2.47    1.0x
+  bits_log2_tuned                         0.38    5.5x       0.08   24.2x       0.09   26.3x
+  mantissa_log2_7                         0.81    2.6x       0.26    7.2x       0.28    8.7x
+  mantissa_log2_9                         0.90    2.3x       0.31    6.1x       0.34    7.3x
+  fold15_log2_7                           0.97    2.2x       0.40    4.8x       0.41    6.0x
+  fold15_log2_9                           1.17    1.8x       0.44    4.3x       0.47    5.2x
+  foldsqrt2_log2_7                        0.97    2.2x       0.40    4.8x       0.42    5.9x
+  foldsqrt2_log2_9                        1.17    1.8x       0.45    4.3x       0.46    5.4x
+  atanh_log2_5                            1.14    1.8x       0.42    4.5x       0.42    5.9x
+  atanh_log2_7                            1.28    1.6x       0.46    4.1x       0.48    5.2x
+adc log2 bench (clang 21.0.0, fast-math off, release)
+
+Timing, log2 x, f32: ns per sample, speedup vs std::log2; log2 x uniform in [-20, 10]
+  indep / vector: 65536 sorted inputs, escape every sample or once per pass, median of 100 passes.
+  cold: 256-sample ramp through that range after evicting 64 MB, trimmed mean of 200
+  method                                 indep             vector               cold        
+  std::log2                               2.10    1.0x       1.94    1.0x       2.42    1.0x
+  bits_log2_tuned                         0.38    5.5x       0.08   24.2x       0.10   23.3x
+  mantissa_log2_7                         0.81    2.6x       0.26    7.3x       0.29    8.3x
+  mantissa_log2_9                         0.92    2.3x       0.31    6.2x       0.34    7.1x
+  fold15_log2_7                           0.97    2.2x       0.40    4.8x       0.43    5.7x
+  fold15_log2_9                           1.17    1.8x       0.45    4.3x       0.48    5.1x
+  foldsqrt2_log2_7                        0.97    2.2x       0.40    4.8x       0.42    5.7x
+  foldsqrt2_log2_9                        1.17    1.8x       0.45    4.3x       0.46    5.2x
+  atanh_log2_5                            1.14    1.8x       0.42    4.6x       0.41    5.9x
+  atanh_log2_7                            1.28    1.6x       0.46    4.2x       0.48    5.0x
+adc log2 bench (clang 21.0.0, fast-math off, release)
+
+Timing, log2 x, f32: ns per sample, speedup vs std::log2; log2 x uniform in [-20, 10]
+  indep / vector: 65536 sorted inputs, escape every sample or once per pass, median of 100 passes.
+  cold: 256-sample ramp through that range after evicting 64 MB, trimmed mean of 200
+  method                                 indep             vector               cold        
+  std::log2                               2.09    1.0x       1.91    1.0x       2.35    1.0x
+  bits_log2_tuned                         0.38    5.5x       0.08   24.4x       0.09   25.9x
+  mantissa_log2_7                         0.81    2.6x       0.26    7.2x       0.29    8.1x
+  mantissa_log2_9                         0.90    2.3x       0.31    6.1x       0.33    7.2x
+  fold15_log2_7                           0.97    2.1x       0.40    4.8x       0.42    5.6x
+  fold15_log2_9                           1.25    1.7x       0.48    4.0x       0.47    5.0x
+  foldsqrt2_log2_7                        0.97    2.1x       0.40    4.8x       0.43    5.5x
+  foldsqrt2_log2_9                        1.17    1.8x       0.45    4.3x       0.52    4.5x
+  atanh_log2_5                            1.14    1.8x       0.42    4.5x       0.42    5.6x
+  atanh_log2_7                            1.27    1.6x       0.46    4.1x       0.48    4.9x
+adc log2 bench (clang 21.0.0, fast-math off, release)
+
+Timing, log2 x, f32: ns per sample, speedup vs std::log2; log2 x uniform in [-20, 10]
+  indep / vector: 65536 sorted inputs, escape every sample or once per pass, median of 100 passes.
+  cold: 256-sample ramp through that range after evicting 64 MB, trimmed mean of 200
+  method                                 indep             vector               cold        
+  std::log2                               2.09    1.0x       1.91    1.0x       2.23    1.0x
+  bits_log2_tuned                         0.38    5.5x       0.08   24.4x       0.09   25.4x
+  mantissa_log2_7                         0.81    2.6x       0.27    7.2x       0.30    7.5x
+  mantissa_log2_9                         0.90    2.3x       0.31    6.1x       0.34    6.6x
+  fold15_log2_7                           0.97    2.1x       0.41    4.7x       0.43    5.2x
+  fold15_log2_9                           1.17    1.8x       0.45    4.3x       0.46    4.8x
+  foldsqrt2_log2_7                        0.97    2.1x       0.40    4.8x       0.43    5.2x
+  foldsqrt2_log2_9                        1.17    1.8x       0.45    4.3x       0.47    4.8x
+  atanh_log2_5                            1.14    1.8x       0.42    4.5x       0.44    5.1x
+  atanh_log2_7                            1.33    1.6x       0.47    4.0x       0.48    4.6x

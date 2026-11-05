@@ -1,0 +1,54 @@
+adc_simple_loops (bench/simple/loops.cpp), 2026-10-23
+machine: MacBook Pro (M2 Pro), on power
+compiler: Apple clang 21, -O3, no fast-math
+
+Sorted inputs, ns per sample
+              buffer    sample  feedback
+std::sin         1.732     1.889    10.684
+Taylor           0.162     0.623    10.588
+Turns            0.226     0.811    10.258
+Random inputs, ns per sample
+              buffer    sample  feedback
+std::sin         5.891     5.868    15.506
+Taylor           0.165     0.612    10.545
+Turns            0.228     0.810    10.207
+Sorted inputs, ns per sample
+              buffer    sample  feedback
+std::sin         1.732     1.916    10.586
+Taylor           0.172     0.615    10.553
+Turns            0.226     0.811    10.298
+Random inputs, ns per sample
+              buffer    sample  feedback
+std::sin         6.011     5.845    15.479
+Taylor           0.162     0.617    10.541
+Turns            0.225     0.810    10.220
+Sorted inputs, ns per sample
+              buffer    sample  feedback
+std::sin         1.733     1.840    10.453
+Taylor           0.175     0.618    10.653
+Turns            0.225     0.809    10.277
+Random inputs, ns per sample
+              buffer    sample  feedback
+std::sin         6.060     5.900    15.334
+Taylor           0.180     0.627    10.499
+Turns            0.230     0.809    10.325
+Sorted inputs, ns per sample
+              buffer    sample  feedback
+std::sin         1.732     1.862    10.394
+Taylor           0.168     0.640    10.289
+Turns            0.228     0.808    10.078
+Random inputs, ns per sample
+              buffer    sample  feedback
+std::sin         5.823     5.709    15.086
+Taylor           0.162     0.615    10.483
+Turns            0.226     0.844    10.195
+Sorted inputs, ns per sample
+              buffer    sample  feedback
+std::sin         1.732     1.839    10.672
+Taylor           0.163     0.627    10.526
+Turns            0.225     0.810    10.255
+Random inputs, ns per sample
+              buffer    sample  feedback
+std::sin         5.927     5.750    15.464
+Taylor           0.163     0.614    10.480
+Turns            0.226     0.811    10.227

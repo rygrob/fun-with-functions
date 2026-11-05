@@ -1,0 +1,34 @@
+adc_simple_estrin (bench/simple/estrin.cpp), 2026-11-05
+machine: MacBook Pro (M2 Pro), on power
+compiler: Apple clang 21, -O3, no fast-math
+
+ns per sample            Taylor            radians                  turns
+  loop     std::sin  Horner  Estrin   Horner  Estrin    fold   Horner  Estrin    fold
+  vector     1.79     0.17    0.19     0.16    0.19    0.21     0.23    0.26    0.28
+  scalar     1.80     0.61    0.73     0.62    0.73    0.84     0.81    0.94    1.02
+  chain     10.73    10.68    7.30    10.73    7.40    7.45    10.38    8.09    8.36
+max ULP, turns, every float in [0, 1]: Horner 4.969  Estrin 5.234  fold 4.840
+ns per sample            Taylor            radians                  turns
+  loop     std::sin  Horner  Estrin   Horner  Estrin    fold   Horner  Estrin    fold
+  vector     1.83     0.17    0.19     0.16    0.19    0.22     0.24    0.27    0.29
+  scalar     1.83     0.68    0.79     0.64    0.78    0.83     0.87    1.03    1.09
+  chain     10.74    11.03    7.40    10.73    7.61    7.50    10.73    8.27    8.38
+max ULP, turns, every float in [0, 1]: Horner 4.969  Estrin 5.234  fold 4.840
+ns per sample            Taylor            radians                  turns
+  loop     std::sin  Horner  Estrin   Horner  Estrin    fold   Horner  Estrin    fold
+  vector     1.85     0.17    0.20     0.17    0.21    0.22     0.24    0.27    0.29
+  scalar     1.82     0.65    0.77     0.68    0.79    0.88     0.90    3.02    1.07
+  chain     10.92    10.73    7.41    10.50    7.29    7.27    10.33    8.08    8.27
+max ULP, turns, every float in [0, 1]: Horner 4.969  Estrin 5.234  fold 4.840
+ns per sample            Taylor            radians                  turns
+  loop     std::sin  Horner  Estrin   Horner  Estrin    fold   Horner  Estrin    fold
+  vector     1.81     0.17    0.20     0.16    0.19    0.22     0.23    0.27    0.29
+  scalar     1.80     0.63    0.75     0.64    0.75    0.83     0.83    0.97    1.05
+  chain     10.89    10.75    7.29    10.63    7.29    7.32    10.25    8.13    8.23
+max ULP, turns, every float in [0, 1]: Horner 4.969  Estrin 5.234  fold 4.840
+ns per sample            Taylor            radians                  turns
+  loop     std::sin  Horner  Estrin   Horner  Estrin    fold   Horner  Estrin    fold
+  vector     1.88     0.17    0.19     0.17    0.20    0.22     0.23    0.27    0.29
+  scalar     1.80     0.65    0.75     0.63    0.75    0.84     0.83    0.97    1.05
+  chain     10.96    10.89    7.45    10.75    7.47    7.40    10.37    8.32    8.64
+max ULP, turns, every float in [0, 1]: Horner 4.969  Estrin 5.234  fold 4.840

@@ -1,0 +1,12 @@
+adc sin approximation bench (clang 21.0.0, fast-math off, release)
+
+ULP error, f32, turns: every normal float with FLT_MIN <= x <= 1
+  method                          max ULP             at x   mean ULP   exact %  <1 ULP % max abs dB
+  cheb_turns_sin_11                  11.9     0.0198538043      4.661     0.625     1.301     -125.6
+  cheb_turns_sin_13                 4.969   0.000147602681      1.152     8.196    36.223     -132.6
+  remez_turns_sin_11                9.239      0.490053505      3.845     0.729     1.474     -125.8
+  remez_turns_sin_13                5.562    0.00122919388      1.224     5.009    31.797     -132.2
+  tuned_turns_sin_11_fma             11.1     0.0195852928      4.751     0.623     1.237     -125.7
+  tuned_turns_sin_13_fma            4.061      0.416776568     0.5734    44.857    89.687     -132.6
+  std::sin(2pi x)               6.676e+06       0.50000006     0.5829    65.890    98.636     -127.7
+  (6.2 s on 12 threads)
